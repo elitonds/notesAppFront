@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {Note} from '../dto/note.dto';
+import {NoteService} from "../services/noteService.service";
 
 @Component({
   selector: 'app-note',
@@ -9,12 +10,14 @@ import {Note} from '../dto/note.dto';
 export class NoteComponent implements OnInit {
   note:Note = new Note();
 
-  constructor() { 
-    
+  constructor(private noteService:NoteService) { 
+
   }
 
   cadastrar(){
-
+    debugger;
+    this.noteService.postRequest("add_note", this.note);
+    this.note = new Note();
   }
 
   ngOnInit() {
